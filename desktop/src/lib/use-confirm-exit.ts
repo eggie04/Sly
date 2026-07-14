@@ -8,6 +8,7 @@ export function useConfirmExit(shouldConfirm: boolean) {
 		const currentWindow = getCurrentWebviewWindow()
 		currentWindow
 			.onCloseRequested(async (event) => {
+				if (!shouldConfirm) return
 				event.preventDefault()
 				await currentWindow.hide()
 			})

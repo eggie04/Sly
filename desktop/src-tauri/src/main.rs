@@ -14,7 +14,7 @@ mod logging;
 mod setup;
 mod sona;
 mod transcript;
-use tauri::{Emitter, Manager};
+use tauri::Emitter;
 
 #[cfg(target_os = "macos")]
 mod dock;
@@ -26,8 +26,9 @@ use eyre::{eyre, Result};
 use tauri::{
     menu::{MenuBuilder, MenuItemBuilder},
     tray::{MouseButton, MouseButtonState, TrayIconBuilder, TrayIconEvent},
-    State,
+    AppHandle, Manager, State,
 };
+use tauri_plugin_store::StoreExt;
 use tauri_plugin_window_state::StateFlags;
 
 use error::LogError;
@@ -49,6 +50,16 @@ fn hide_main_window(app: &tauri::AppHandle) {
     if let Some(webview) = app.get_webview_window("main") {
         webview.hide().map_err(|e| eyre!("{:?}", e)).log_error();
     }
+}
+
+pub(crate) fn is_close_to_tray_enabled(app: &AppHandle) -> bool {
+    let Ok(store) = app.store(config::STORE_FILENAME) else {
+        return true;
+    };
+    store
+        .get("prefs_close_to_tray")
+        .and_then(|value| value.as_bool())
+        .unwrap_or(true)
 }
 
 #[tokio::main]
@@ -195,6 +206,7 @@ async fn main() -> Result<()> {
             if !state
                 .quitting
                 .load(std::sync::atomic::Ordering::Relaxed)
+                && is_close_to_tray_enabled(app)
             {
                 api.prevent_exit();
                 hide_main_window(app);

@@ -66,13 +66,13 @@ export function viewModel() {
 		setSummarizeSegments(null)
 		setTranscriptTab('transcript')
 	})
-	useConfirmExit((segments?.length ?? 0) > 0 || loading)
-
 	const {
 		files, setFiles, audio, setAudio, selectedFolder, setSelectedFolder, isCollectingFolder,
 		selectFiles, selectFolder, startFolderBatch, clearFolderSelection,
 	} = useMediaSelection()
 	const preference = usePreferenceProvider()
+	useConfirmExit(preference.closeToTray)
+
 	const {
 		cancelYtDlpRef, cancelYtDlpDownload, ytdlpProgress, setYtDlpProgress, switchToLinkTab,
 		audioUrl, setAudioUrl, downloadAudio, downloadingAudio, setDownloadingAudio,
