@@ -74,91 +74,91 @@ html.dictation-indicator-window #root {
 
 :root {
 	--radius: 0.75rem;
-	--background: hsl(210 34% 96%);
-	--foreground: hsl(215 22% 17%);
-	--card: hsl(0 0% 100% / 0.95);
-	--card-foreground: hsl(215 22% 17%);
-	--popover: hsl(0 0% 100% / 0.98);
-	--popover-foreground: hsl(215 22% 17%);
-	--primary: hsl(205 74% 43%);
-	--primary-foreground: hsl(0 0% 100%);
-	--secondary: hsl(206 28% 92%);
-	--secondary-foreground: hsl(214 20% 24%);
-	--muted: hsl(207 24% 93%);
-	--muted-foreground: hsl(214 12% 44%);
-	--accent: hsl(206 44% 90%);
-	--accent-foreground: hsl(214 20% 24%);
+	--background: hsl(38 100% 97%);
+	--foreground: hsl(215 52% 16%);
+	--card: hsl(36 100% 99% / 0.96);
+	--card-foreground: hsl(215 52% 16%);
+	--popover: hsl(36 100% 99% / 0.98);
+	--popover-foreground: hsl(215 52% 16%);
+	--primary: hsl(35 100% 50%);
+	--primary-foreground: hsl(218 68% 11%);
+	--secondary: hsl(43 100% 88%);
+	--secondary-foreground: hsl(214 50% 23%);
+	--muted: hsl(38 65% 93%);
+	--muted-foreground: hsl(214 20% 38%);
+	--accent: hsl(202 100% 93%);
+	--accent-foreground: hsl(210 60% 28%);
 	--destructive: hsl(0 78% 57%);
 	--destructive-foreground: hsl(210 40% 98%);
-	--success: hsl(154 64% 38%);
-	--success-foreground: hsl(154 100% 96%);
-	--border: hsl(208 22% 83%);
-	--input: hsl(208 22% 83%);
-	--ring: hsl(205 72% 45%);
-	--chart-1: hsl(205 74% 43%);
-	--chart-2: hsl(197 60% 42%);
-	--chart-3: hsl(28 70% 52%);
-	--chart-4: hsl(45 80% 52%);
-	--chart-5: hsl(265 45% 55%);
-	--sidebar: hsl(0 0% 100% / 0.9);
-	--sidebar-foreground: hsl(215 20% 18%);
-	--sidebar-primary: hsl(205 74% 43%);
-	--sidebar-primary-foreground: hsl(0 0% 100%);
-	--sidebar-accent: hsl(206 30% 92%);
-	--sidebar-accent-foreground: hsl(214 20% 24%);
-	--sidebar-border: hsl(208 20% 84%);
-	--sidebar-ring: hsl(205 72% 45%);
-	--shadow-2xs: 0 1px 1px hsl(211 60% 11% / 0.06);
-	--shadow-xs: 0 1px 2px hsl(211 60% 11% / 0.08);
-	--shadow-sm: 0 4px 12px hsl(220 18% 16% / 0.05);
-	--shadow: 0 8px 20px hsl(220 18% 16% / 0.07);
-	--shadow-md: 0 12px 28px hsl(220 18% 16% / 0.09);
-	--shadow-lg: 0 16px 36px hsl(220 10% 20% / 0.12);
-	--shadow-xl: 0 24px 52px hsl(220 10% 20% / 0.16);
-	--shadow-2xl: 0 32px 68px hsl(220 10% 20% / 0.2);
+	--success: hsl(202 100% 43%);
+	--success-foreground: hsl(210 100% 97%);
+	--border: hsl(31 54% 84%);
+	--input: hsl(31 54% 84%);
+	--ring: hsl(208 100% 31%);
+	--chart-1: hsl(26 100% 45%);
+	--chart-2: hsl(35 100% 50%);
+	--chart-3: hsl(48 100% 50%);
+	--chart-4: hsl(202 100% 43%);
+	--chart-5: hsl(208 100% 31%);
+	--sidebar: hsl(36 100% 99% / 0.92);
+	--sidebar-foreground: hsl(215 52% 16%);
+	--sidebar-primary: hsl(26 100% 45%);
+	--sidebar-primary-foreground: hsl(36 100% 99%);
+	--sidebar-accent: hsl(202 100% 93%);
+	--sidebar-accent-foreground: hsl(210 60% 28%);
+	--sidebar-border: hsl(31 54% 84%);
+	--sidebar-ring: hsl(202 100% 43%);
+	--shadow-2xs: 0 1px 1px hsl(220 45% 12% / 0.06);
+	--shadow-xs: 0 1px 2px hsl(220 45% 12% / 0.08);
+	--shadow-sm: 0 6px 16px hsl(220 45% 12% / 0.08);
+	--shadow: 0 10px 24px hsl(220 45% 12% / 0.1);
+	--shadow-md: 0 14px 30px hsl(220 45% 12% / 0.12);
+	--shadow-lg: 0 18px 40px hsl(220 45% 12% / 0.16);
+	--shadow-xl: 0 28px 60px hsl(220 45% 12% / 0.2);
+	--shadow-2xl: 0 36px 80px hsl(220 45% 12% / 0.24);
 	--tracking-normal: 0em;
 }
 
 .dark {
-	--background: hsl(220 10% 10%);
-	--foreground: hsl(210 18% 93%);
-	--card: hsl(220 9% 16%);
-	--card-foreground: hsl(210 18% 93%);
-	--popover: hsl(220 9% 17%);
-	--popover-foreground: hsl(210 18% 93%);
-	--primary: hsl(212 100% 56%);
-	--primary-foreground: hsl(0 0% 100%);
-	--secondary: hsl(220 8% 22%);
-	--secondary-foreground: hsl(210 14% 90%);
-	--muted: hsl(220 8% 20%);
-	--muted-foreground: hsl(214 10% 74%);
-	--accent: hsl(220 8% 24%);
-	--accent-foreground: hsl(210 14% 90%);
+	--background: hsl(219 72% 10%);
+	--foreground: hsl(36 75% 95%);
+	--card: hsl(218 64% 14%);
+	--card-foreground: hsl(36 75% 95%);
+	--popover: hsl(218 64% 15%);
+	--popover-foreground: hsl(36 75% 95%);
+	--primary: hsl(35 100% 50%);
+	--primary-foreground: hsl(218 68% 11%);
+	--secondary: hsl(212 60% 20%);
+	--secondary-foreground: hsl(36 72% 92%);
+	--muted: hsl(214 56% 18%);
+	--muted-foreground: hsl(32 32% 78%);
+	--accent: hsl(206 100% 23%);
+	--accent-foreground: hsl(36 75% 95%);
 	--destructive: hsl(0 70% 48%);
 	--destructive-foreground: hsl(210 28% 96%);
-	--success: hsl(154 64% 45%);
-	--success-foreground: hsl(153 58% 10%);
-	--border: hsl(220 8% 34%);
-	--input: hsl(220 8% 34%);
-	--ring: hsl(212 100% 60%);
-	--chart-1: hsl(212 100% 56%);
-	--chart-2: hsl(197 38% 60%);
-	--chart-3: hsl(30 76% 58%);
-	--chart-4: hsl(50 74% 58%);
-	--chart-5: hsl(270 58% 62%);
-	--sidebar: hsl(220 9% 16%);
-	--sidebar-foreground: hsl(210 18% 93%);
-	--sidebar-primary: hsl(212 100% 56%);
-	--sidebar-primary-foreground: hsl(0 0% 100%);
-	--sidebar-accent: hsl(220 8% 24%);
-	--sidebar-accent-foreground: hsl(210 14% 90%);
-	--sidebar-border: hsl(220 8% 34%);
-	--sidebar-ring: hsl(212 100% 60%);
-	--shadow-sm: 0 8px 20px hsl(225 28% 4% / 0.28);
-	--shadow: 0 12px 28px hsl(225 28% 4% / 0.35);
-	--shadow-md: 0 18px 38px hsl(225 28% 4% / 0.42);
-	--shadow-lg: 0 26px 52px hsl(225 28% 4% / 0.5);
-	--shadow-xl: 0 34px 70px hsl(225 28% 4% / 0.58);
+	--success: hsl(202 100% 43%);
+	--success-foreground: hsl(218 68% 11%);
+	--border: hsl(213 39% 27%);
+	--input: hsl(213 39% 27%);
+	--ring: hsl(202 100% 43%);
+	--chart-1: hsl(26 100% 45%);
+	--chart-2: hsl(35 100% 50%);
+	--chart-3: hsl(48 100% 50%);
+	--chart-4: hsl(202 100% 43%);
+	--chart-5: hsl(208 100% 31%);
+	--sidebar: hsl(218 64% 14%);
+	--sidebar-foreground: hsl(36 75% 95%);
+	--sidebar-primary: hsl(35 100% 50%);
+	--sidebar-primary-foreground: hsl(218 68% 11%);
+	--sidebar-accent: hsl(206 100% 23%);
+	--sidebar-accent-foreground: hsl(36 75% 95%);
+	--sidebar-border: hsl(213 39% 27%);
+	--sidebar-ring: hsl(202 100% 43%);
+	--shadow-sm: 0 8px 20px hsl(220 60% 4% / 0.32);
+	--shadow: 0 12px 28px hsl(220 60% 4% / 0.4);
+	--shadow-md: 0 18px 38px hsl(220 60% 4% / 0.48);
+	--shadow-lg: 0 26px 52px hsl(220 60% 4% / 0.56);
+	--shadow-xl: 0 34px 70px hsl(220 60% 4% / 0.64);
 }
 
 @layer base {
@@ -176,9 +176,10 @@ html.dictation-indicator-window #root {
 		@apply bg-background text-foreground;
 		font-feature-settings: 'rlig' 1, 'calt' 1;
 		background-image:
-			radial-gradient(1200px 700px at 15% -10%, hsl(205 90% 88% / 0.55) 0%, transparent 60%),
-			radial-gradient(900px 600px at 100% 0%, hsl(280 70% 88% / 0.35) 0%, transparent 55%),
-			linear-gradient(180deg, hsl(210 32% 97%) 0%, hsl(210 28% 95%) 100%);
+			radial-gradient(1100px 640px at 12% -10%, hsl(48 100% 50% / 0.28) 0%, transparent 58%),
+			radial-gradient(980px 620px at 100% 0%, hsl(35 100% 50% / 0.22) 0%, transparent 52%),
+			radial-gradient(900px 520px at 75% 18%, hsl(202 100% 43% / 0.16) 0%, transparent 48%),
+			linear-gradient(180deg, hsl(38 100% 98%) 0%, hsl(35 70% 95%) 100%);
 		background-repeat: no-repeat;
 		background-attachment: fixed;
 		background-size: 100% 100%;
@@ -198,9 +199,10 @@ html.dictation-indicator-window #root {
 
 	.dark body {
 		background-image:
-			radial-gradient(1200px 700px at 15% -10%, hsl(212 100% 30% / 0.16) 0%, transparent 60%),
-			radial-gradient(900px 600px at 100% 0%, hsl(280 60% 30% / 0.12) 0%, transparent 55%),
-			linear-gradient(180deg, hsl(220 10% 11%) 0%, hsl(220 10% 9%) 100%);
+			radial-gradient(1100px 640px at 12% -10%, hsl(35 100% 50% / 0.18) 0%, transparent 55%),
+			radial-gradient(980px 600px at 100% 0%, hsl(202 100% 43% / 0.18) 0%, transparent 50%),
+			radial-gradient(900px 520px at 70% 18%, hsl(26 100% 45% / 0.14) 0%, transparent 45%),
+			linear-gradient(180deg, hsl(219 72% 11%) 0%, hsl(220 68% 9%) 100%);
 	}
 
 	* {
@@ -208,11 +210,11 @@ html.dictation-indicator-window #root {
 	}
 
 	::selection {
-		background: hsl(205 74% 43% / 0.22);
+		background: hsl(35 100% 50% / 0.28);
 	}
 
 	.dark ::selection {
-		background: hsl(212 100% 56% / 0.26);
+		background: hsl(202 100% 43% / 0.3);
 	}
 
 	::-webkit-scrollbar {
@@ -225,17 +227,17 @@ html.dictation-indicator-window #root {
 	}
 
 	::-webkit-scrollbar-thumb {
-		background: hsl(210 13% 52% / 0.35);
+		background: hsl(26 100% 45% / 0.34);
 		border-radius: 999px;
 	}
 
 	.dark ::-webkit-scrollbar-thumb {
-		background: hsl(214 6% 56% / 0.42);
+		background: hsl(35 100% 50% / 0.38);
 	}
 
 	.transcript-editor {
 		scrollbar-width: auto;
-		scrollbar-color: hsl(208 36% 52% / 0.78) hsl(210 18% 90% / 0.85);
+		scrollbar-color: hsl(26 100% 45% / 0.78) hsl(38 44% 90% / 0.9);
 		scrollbar-gutter: stable;
 	}
 
@@ -246,39 +248,39 @@ html.dictation-indicator-window #root {
 	}
 
 	.transcript-editor::-webkit-scrollbar-thumb {
-		background: hsl(208 36% 52% / 0.8) !important;
-		border: 3px solid hsl(210 18% 90% / 0.85) !important;
+		background: hsl(26 100% 45% / 0.8) !important;
+		border: 3px solid hsl(38 44% 90% / 0.9) !important;
 		background-clip: padding-box !important;
 		border-radius: 999px !important;
 		min-height: 96px !important;
 	}
 
 	.transcript-editor::-webkit-scrollbar-thumb:hover {
-		background: hsl(208 36% 46% / 0.9) !important;
+		background: hsl(26 100% 40% / 0.9) !important;
 	}
 
 	.transcript-editor::-webkit-scrollbar-track {
-		background: hsl(210 18% 90% / 0.85) !important;
-		border-left: 1px solid hsl(208 22% 83% / 0.75) !important;
+		background: hsl(38 44% 90% / 0.9) !important;
+		border-left: 1px solid hsl(31 54% 84% / 0.8) !important;
 	}
 
 	.dark .transcript-editor::-webkit-scrollbar-thumb {
-		background: hsl(214 10% 62% / 0.82) !important;
-		border: 3px solid hsl(220 8% 18% / 0.96) !important;
+		background: hsl(35 100% 50% / 0.82) !important;
+		border: 3px solid hsl(218 64% 15% / 0.96) !important;
 		background-clip: padding-box !important;
 	}
 
 	.dark .transcript-editor::-webkit-scrollbar-thumb:hover {
-		background: hsl(214 12% 70% / 0.9) !important;
+		background: hsl(48 100% 50% / 0.9) !important;
 	}
 
 	.dark .transcript-editor::-webkit-scrollbar-track {
-		background: hsl(220 8% 18% / 0.96) !important;
-		border-left: 1px solid hsl(220 8% 34% / 0.8) !important;
+		background: hsl(218 64% 15% / 0.96) !important;
+		border-left: 1px solid hsl(213 39% 27% / 0.8) !important;
 	}
 
 	.dark .transcript-editor {
-		scrollbar-color: hsl(214 10% 62% / 0.82) hsl(220 8% 18% / 0.96);
+		scrollbar-color: hsl(35 100% 50% / 0.82) hsl(218 64% 15% / 0.96);
 	}
 }
 
@@ -315,6 +317,11 @@ html.dictation-indicator-window #root {
 
 	.app-title {
 		@apply text-3xl font-semibold tracking-tight md:text-4xl;
+		background: linear-gradient(135deg, #e66000 0%, #ff9500 45%, #ffcb00 100%);
+		-webkit-background-clip: text;
+		background-clip: text;
+		color: transparent;
+		text-shadow: 0 10px 30px rgb(0 83 159 / 0.1);
 	}
 
 	.app-kicker {
