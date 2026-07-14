@@ -3,6 +3,7 @@ import { invoke } from '@tauri-apps/api/core'
 import { emit, listen } from '@tauri-apps/api/event'
 import { register, unregister, isRegistered } from '@tauri-apps/plugin-global-shortcut'
 import * as clipboard from '@tauri-apps/plugin-clipboard-manager'
+import * as fs from '@tauri-apps/plugin-fs'
 import { useLocalStorage } from 'usehooks-ts'
 import { AudioDevice } from '~/lib/audio'
 import { Claude, Llm, Ollama, OpenAICompatible } from '~/lib/llm'
@@ -31,6 +32,8 @@ interface HotkeyContextType {
 	setHotkeyOutputMode: (mode: HotkeyOutputMode) => void
 	hotkeyActivationMode: HotkeyActivationMode
 	setHotkeyActivationMode: (mode: HotkeyActivationMode) => void
+	hotkeySaveRecording: boolean
+	setHotkeySaveRecording: (enabled: boolean) => void
 	hotkeyNormalizeOutput: boolean
 	setHotkeyNormalizeOutput: (enabled: boolean) => void
 	isHotkeyRecording: boolean
@@ -87,6 +90,7 @@ export function HotkeyProvider({ children }: { children: ReactNode }) {
 	const [hotkeyShortcut, setHotkeyShortcut] = useLocalStorage('prefs_hotkey_shortcut', DEFAULT_HOTKEY_SHORTCUT)
 	const [hotkeyOutputMode, setHotkeyOutputMode] = useLocalStorage<HotkeyOutputMode>('prefs_hotkey_output_mode', 'clipboard')
 	const [hotkeyActivationMode, setHotkeyActivationMode] = useLocalStorage<HotkeyActivationMode>('prefs_hotkey_activation_mode', 'push-to-talk')
+	const [hotkeySaveRecording, setHotkeySaveRecording] = useLocalStorage('prefs_hotkey_save_recording', false)
 	const shortcutOperationRef = useRef<Promise<void>>(Promise.resolve())
 	const [hotkeyNormalizeOutput, setHotkeyNormalizeOutput] = useLocalStorage('prefs_hotkey_normalize_output', true)
 	const [isHotkeyRecording, setIsHotkeyRecording] = useState(false)
@@ -168,8 +172,8 @@ export function HotkeyProvider({ children }: { children: ReactNode }) {
 
 			await invoke('start_record', {
 				devices: hotkeyDevices,
-				storeInDocuments: preferenceRef.current.storeRecordInDocuments,
-				customPath: preferenceRef.current.customRecordingPath,
+				storeInDocuments: hotkeySaveRecording,
+				customPath: hotkeySaveRecording ? preferenceRef.current.customRecordingPath : null,
 				recordingName: null,
 			})
 			indicatorSessionRef.current += 1
@@ -246,6 +250,13 @@ export function HotkeyProvider({ children }: { children: ReactNode }) {
 				finishIndicator('error', { message })
 				await notify('Sly', message)
 			} finally {
+				if (!hotkeySaveRecording) {
+					try {
+						await fs.remove(path)
+					} catch (cleanupError) {
+						console.error('Hotkey recording cleanup error:', cleanupError)
+					}
+				}
 				isStoppingRef.current = false
 				isHotkeyRecordingRef.current = false
 				hotkeyRecordingActive = false
@@ -336,6 +347,8 @@ export function HotkeyProvider({ children }: { children: ReactNode }) {
 		setHotkeyOutputMode,
 		hotkeyActivationMode,
 		setHotkeyActivationMode,
+		hotkeySaveRecording,
+		setHotkeySaveRecording,
 		hotkeyNormalizeOutput,
 		setHotkeyNormalizeOutput,
 		isHotkeyRecording,
