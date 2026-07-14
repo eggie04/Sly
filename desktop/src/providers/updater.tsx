@@ -8,6 +8,8 @@ import { ModifyState } from '~/lib/types'
 import { invoke } from '@tauri-apps/api/core'
 import { openUrl as open } from '@tauri-apps/plugin-opener'
 import { latestReleaseURL } from '~/lib/config'
+
+const UPDATES_ENABLED = false
 // Define the context type
 
 type UpdaterContextType = {
@@ -48,6 +50,7 @@ export function UpdaterProvider({ children }: { children: React.ReactNode }) {
 	}, [partSize])
 
 	useEffect(() => {
+		if (!UPDATES_ENABLED) return
 		// Check for new updates
 		async function checkForUpdates() {
 			try {
@@ -108,6 +111,11 @@ export function UpdaterProvider({ children }: { children: React.ReactNode }) {
 	}
 
 	async function updateApp() {
+		if (!UPDATES_ENABLED) {
+			await open(latestReleaseURL)
+			return
+		}
+
 		const avx2Enabled = await invoke('is_avx2_enabled')
 
 		if (!avx2Enabled) {

@@ -1,5 +1,5 @@
 {
-	"name": "vibe",
+	"name": "sly",
 	"private": true,
 	"version": "0.0.0",
 	"packageManager": "pnpm@10.4.1",
@@ -8,7 +8,7 @@
 		"dev": "vite",
 		"test": "vitest run",
 		"i18n:generate": "paraglide-js compile --project ./project.inlang --outdir ./src/paraglide --emit-ts-declarations --strategy localStorage globalVariable baseLocale",
-		"build": "pnpm i18n:generate && tsc && vite build",
+		"build": "paraglide-js compile --project ./project.inlang --outdir ./src/paraglide --emit-ts-declarations --strategy localStorage globalVariable baseLocale && tsc && vite build",
 		"preview": "vite preview",
 		"tauri": "tauri",
 		"lint": "eslint ."

@@ -7,6 +7,7 @@ import { useLocalStorage } from 'usehooks-ts'
 import { AudioDevice } from '~/lib/audio'
 import { Claude, Llm, Ollama, OpenAICompatible } from '~/lib/llm'
 import * as transcript from '~/lib/transcript'
+import { ensureSystemAudioPermission } from '~/lib/permissions'
 import { usePreferenceProvider } from '~/providers/preference'
 import { m } from '~/paraglide/messages.js'
 import { hideDictationIndicator, showDictationIndicator } from '~/lib/dictation-indicator'
@@ -67,6 +68,17 @@ function getErrorMessage(error: unknown): string {
 	return String(error)
 }
 
+function readStoredString(key: string): string | null {
+	const raw = window.localStorage.getItem(key)
+	if (raw === null) return null
+	try {
+		const parsed = JSON.parse(raw)
+		return typeof parsed === 'string' ? parsed : null
+	} catch {
+		return raw
+	}
+}
+
 export function HotkeyProvider({ children }: { children: ReactNode }) {
 	const preference = usePreferenceProvider()
 	const preferenceRef = useRef(preference)
@@ -120,14 +132,33 @@ export function HotkeyProvider({ children }: { children: ReactNode }) {
 		return new Claude(config)
 	}, [])
 
+	const getHotkeyDevices = useCallback(async (): Promise<AudioDevice[]> => {
+		const devices = await invoke<AudioDevice[]>('get_audio_devices')
+		const inputs = devices.filter((device) => device.isInput)
+		const outputs = devices.filter((device) => !device.isInput)
+		const savedInputDeviceId = readStoredString('prefs_input_device_id')
+		const savedOutputDeviceId = readStoredString('prefs_output_device_id')
+
+		const inputDevice = savedInputDeviceId === null
+			? inputs.find((device) => device.isDefault) ?? null
+			: inputs.find((device) => device.id === savedInputDeviceId) ?? null
+		const outputDevice = savedOutputDeviceId === null
+			? outputs.find((device) => device.isDefault) ?? null
+			: outputs.find((device) => device.id === savedOutputDeviceId) ?? null
+
+		return [inputDevice, outputDevice].filter((device): device is AudioDevice => device !== null)
+	}, [])
+
 	const handleHotkeyDown = useCallback(async () => {
 		if (isHotkeyRecordingRef.current || isStartingRef.current || isStoppingRef.current) return
 		isStartingRef.current = true
 		try {
-			const devices = await invoke<AudioDevice[]>('get_audio_devices')
-			const defaultInput = devices.find((d) => d.isDefault && d.isInput)
-			if (!defaultInput) {
-				console.error('No default input device found')
+			const hotkeyDevices = await getHotkeyDevices()
+			if (hotkeyDevices.some((device) => !device.isInput) && !(await ensureSystemAudioPermission())) {
+				return
+			}
+			if (hotkeyDevices.length === 0) {
+				console.error('No recording devices found for hotkey')
 				return
 			}
 
@@ -136,9 +167,9 @@ export function HotkeyProvider({ children }: { children: ReactNode }) {
 			setIsHotkeyRecording(true)
 
 			await invoke('start_record', {
-				devices: [defaultInput],
-				storeInDocuments: false,
-				customPath: null,
+				devices: hotkeyDevices,
+				storeInDocuments: preferenceRef.current.storeRecordInDocuments,
+				customPath: preferenceRef.current.customRecordingPath,
 				recordingName: null,
 			})
 			indicatorSessionRef.current += 1
@@ -151,7 +182,7 @@ export function HotkeyProvider({ children }: { children: ReactNode }) {
 		} finally {
 			isStartingRef.current = false
 		}
-	}, [showIndicator])
+	}, [getHotkeyDevices, showIndicator])
 
 	const handleHotkeyUp = useCallback(async () => {
 		if (!isHotkeyRecordingRef.current || isStoppingRef.current) return
@@ -206,14 +237,14 @@ export function HotkeyProvider({ children }: { children: ReactNode }) {
 					await invoke('type_text', { text: resultText })
 				} else {
 					await clipboard.writeText(resultText)
-					await notify('Vibe', m.hotkeyTranscriptionCopied())
+					await notify('Sly', m.hotkeyTranscriptionCopied())
 				}
 				finishIndicator('completed', { output: hotkeyOutputModeRef.current })
 			} catch (error) {
 				console.error('Hotkey transcription error:', error)
 				const message = getErrorMessage(error)
 				finishIndicator('error', { message })
-				await notify('Vibe', message)
+				await notify('Sly', message)
 			} finally {
 				isStoppingRef.current = false
 				isHotkeyRecordingRef.current = false

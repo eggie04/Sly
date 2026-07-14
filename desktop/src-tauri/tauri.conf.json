@@ -1,8 +1,8 @@
 {
 	"$schema": "./gen/schemas/desktop-schema.json",
-	"productName": "vibe",
+	"productName": "Sly",
 	"version": "3.0.22",
-	"identifier": "github.com.thewh1teagle.vibe",
+	"identifier": "com.marke.sly",
 	"app": {
 		"macOSPrivateApi": true,
 		"windows": [],
@@ -22,8 +22,8 @@
 		}
 	},
 	"build": {
-		"beforeDevCommand": "pnpm dev",
-		"beforeBuildCommand": "pnpm build",
+		"beforeDevCommand": "corepack pnpm dev",
+		"beforeBuildCommand": "corepack pnpm build",
 		"frontendDist": "../dist",
 		"devUrl": "http://localhost:1420"
 	},
@@ -36,7 +36,7 @@
 			"dmg",
 			"app"
 		],
-		"createUpdaterArtifacts": true,
+		"createUpdaterArtifacts": false,
 		"icon": [
 			"icons/32x32.png",
 			"icons/128x128.png",
@@ -49,17 +49,11 @@
 		]
 	},
 	"plugins": {
-		"updater": {
-			"pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEZFNTJENkIxNTM4NTQxODgKUldTSVFZVlRzZFpTL21VWTBzak1IMTA1ZjdNVHA0MXQ3Y20wa2F2U24zVGl6WUUvTGVoQi8wN1kK",
-			"endpoints": [
-				"https://github.com/thewh1teagle/vibe/releases/latest/download/latest.json"
-			]
-		},
 		"deep-link": {
 			"mobile": [],
 			"desktop": {
 				"schemes": [
-					"vibe"
+					"sly"
 				]
 			}
 		}
